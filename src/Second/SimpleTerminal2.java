@@ -26,6 +26,18 @@ public class SimpleTerminal2 {
                 terminal2.scan(purchaseItem);
             }
         }
+
+        System.out.println("Please, use your discount");
+
+        boolean useDiscount = false;
+        while (!useDiscount){
+            String discount = reader.next();
+            if (discount.equals("*")){
+                useDiscount = true;
+            } else {
+                terminal2.scanDiscount(discount);
+            }
+        }
         reader.close();
 
         System.out.printf("Your purchase bill is: $%.2f.", terminal2.total);

@@ -73,13 +73,12 @@ public class Terminal2 {
     }
 
     public void scanDiscount(String item){
-        if (item.equals(discount.get()))
+        int value = (int) discount.get(item);
+        updatePriceWithDiscount(value);
     }
 
-    private float updatePriceWithDiscount(Map<String, Integer> discount, float total){
-        for (int i = 0; i < discount.size(); i++){
-            discount.get(i).intValue()
-
-        }
+    private float updatePriceWithDiscount(int discount){
+        total = total - (total/100*discount);
+        return total;
     }
 }

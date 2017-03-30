@@ -1,5 +1,6 @@
 package Second;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -20,6 +21,7 @@ public class TerminalTest {
         terminal2.scan("A");
         terminal2.scan("B");
         terminal2.scan("C");
+
         System.out.printf("Your purchase bill is: $%.2f.", terminal2.total);
     }
 }
