@@ -14,6 +14,7 @@ public class SimpleTerminal2 {
         Scanner reader = new Scanner(System.in);
         Terminal2 terminal2 = new Terminal2();
         terminal2.loadPrices();
+        terminal2.setDiscount();
         System.out.println("Scan your products");
 
         boolean endScan = false;

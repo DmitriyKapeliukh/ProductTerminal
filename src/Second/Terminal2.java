@@ -12,6 +12,7 @@ import java.util.Map;
 public class Terminal2 {
     float total = 0.00f;
     Map<String, Products> purchase = new HashMap<>();
+    Map<String, Integer> discount = new HashMap<>();
 
     public void loadPrices() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -36,7 +37,16 @@ public class Terminal2 {
             catch (NumberFormatException e){
                 System.out.println("Invalid parameter.");
             }
+        }
+    }
 
+    public void setDiscount() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Please configure discount card(s).\nHow much discount cards do you have?");
+        int str = Integer.parseInt(reader.readLine());
+        System.out.println("Specify parameters.\nWhere:\n-first parameter: code\n-second parameter: discount");
+        for (int i = 0; i < str; i++) {
+            discount.put(reader.readLine(), Integer.parseInt(reader.readLine()));
         }
     }
 
@@ -59,6 +69,17 @@ public class Terminal2 {
             else {
                 return purchase.get(item).getPriceSingle();
             }
+        }
+    }
+
+    public void scanDiscount(String item){
+        if (item.equals(discount.get()))
+    }
+
+    private float updatePriceWithDiscount(Map<String, Integer> discount, float total){
+        for (int i = 0; i < discount.size(); i++){
+            discount.get(i).intValue()
+
         }
     }
 }
