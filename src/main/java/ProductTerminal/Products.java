@@ -1,4 +1,4 @@
-package Second;
+package main.java.ProductTerminal;
 
 /**
  * Created by Dmytro_Kapeliukh on 3/30/2017.

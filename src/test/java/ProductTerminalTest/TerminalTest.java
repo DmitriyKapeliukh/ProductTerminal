@@ -1,9 +1,9 @@
-package Second;
+package test.java.ProductTerminalTest;
 
+import main.java.ProductTerminal.Products;
+import main.java.ProductTerminal.Terminal2;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.math.BigDecimal;
 
 /**
  * Created by Dmytro_Kapeliukh on 3/30/2017.
@@ -33,7 +33,6 @@ public class TerminalTest {
 
         terminal2.scanDiscount("F");
 
-        //double result = terminal2.total;
         String list = String.format("%.2f", terminal2.total);
 
         Assert.assertEquals(list, "6.41");
@@ -63,7 +62,6 @@ public class TerminalTest {
 
         terminal2.scanDiscount("FF");
 
-        //double result = terminal2.total;
         String list = String.format("%.2f", terminal2.total);
 
         Assert.assertEquals(list, "3.26");
@@ -93,7 +91,6 @@ public class TerminalTest {
 
         terminal2.scanDiscount("FFF");
 
-        //double result = terminal2.total;
         String list = String.format("%.2f", terminal2.total);
 
         Assert.assertEquals(list, "4.50");

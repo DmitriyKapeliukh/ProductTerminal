@@ -1,4 +1,4 @@
-package Second;
+package main.java.ProductTerminal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,9 +10,9 @@ import java.util.Map;
  * Created by Dmytro_Kapeliukh on 3/30/2017.
  */
 public class Terminal2 {
-    float total = 0.00f;
-    Map<String, Products> purchase = new HashMap<>();
-    Map<String, Integer> discount = new HashMap<>();
+    public float total = 0.00f;
+    public Map<String, Products> purchase = new HashMap<>();
+    public Map<String, Integer> discount = new HashMap<>();
 
     public void loadPrices() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
