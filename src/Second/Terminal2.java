@@ -19,7 +19,7 @@ public class Terminal2 {
         System.out.println("How much product do you have?");
         int str = Integer.parseInt(reader.readLine());
         System.out.println("Please provide product parameters:\nProduct code, product price, special price of quantity, quantity for special price\nEach parameter in new line ");
-        for (int i = 0; i < str; i++){
+        for (int i = 0; i < str; i++) {
             String[] productDescription = new String[4];
             for (int k = 0; k < productDescription.length; k++) {
                 productDescription[k] = reader.readLine();
@@ -33,8 +33,7 @@ public class Terminal2 {
 
                 purchase.put(productDescription[0], products);
                 System.out.println("Done");
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid parameter.");
             }
         }
@@ -50,31 +49,31 @@ public class Terminal2 {
         }
     }
 
-    public void scan(String item){
+    public void scan(String item) {
         total += this.updatePrice(purchase, item);
         System.out.printf("Item added. Current bill is: $%.2f. Please, scan the next item.\n(* to finish your purchase)\n", total);
     }
 
-    private float updatePrice(Map<String, Products> purchase, String item){
-        if (purchase.get(item).getQtyOption() - purchase.get(item).getCount() > 1){
-            purchase.get(item).updateCount(false);
-            return purchase.get(item).getPriceSingle();
-        }
-        else {
-            if (purchase.get(item).getQtyOption() - purchase.get(item).getCount() == 1){
-                float correction = purchase.get(item).getPriceOption() - purchase.get(item).getCount() * purchase.get(item).getPriceSingle();
-                purchase.get(item).updateCount(true);
-                return correction;
-            }
-            else {
+    private float updatePrice(Map<String, Products> purchase, String item) throws NullPointerException{
+
+            if (purchase.get(item).getQtyOption() - purchase.get(item).getCount() > 1) {
+                purchase.get(item).updateCount(false);
                 return purchase.get(item).getPriceSingle();
+            } else {
+                if (purchase.get(item).getQtyOption() - purchase.get(item).getCount() == 1) {
+                    float correction = purchase.get(item).getPriceOption() - purchase.get(item).getCount() * purchase.get(item).getPriceSingle();
+                    purchase.get(item).updateCount(true);
+                    return correction;
+                } else {
+                    return purchase.get(item).getPriceSingle();
+                }
             }
-        }
     }
 
     public void scanDiscount(String item){
         int value = (int) discount.get(item);
         updatePriceWithDiscount(value);
+        System.out.println("Another discount?\n* to finish your purchases");
     }
 
     private float updatePriceWithDiscount(int discount){
