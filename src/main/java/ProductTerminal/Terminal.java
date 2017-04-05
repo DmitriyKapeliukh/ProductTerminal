@@ -9,10 +9,10 @@ import java.util.Map;
 /**
  * Created by Dmytro_Kapeliukh on 3/30/2017.
  */
-public class Terminal2 {
-    public float total = 0.00f;
-    public Map<String, Products> purchase = new HashMap<>();
-    public Map<String, Integer> discount = new HashMap<>();
+public class Terminal {
+    private float totalprice = 0.00f;
+    private Map<String, Products> purchase = new HashMap<>();
+    private Map<String, Integer> discount = new HashMap<>();
 
     public void loadPrices() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -50,8 +50,8 @@ public class Terminal2 {
     }
 
     public void scan(String item) {
-        total += this.updatePrice(purchase, item);
-        System.out.printf("Item added. Current bill is: $%.2f. Please, scan the next item.\n(* to finish your purchase)\n", total);
+        totalprice += this.updatePrice(purchase, item);
+        System.out.printf("Item added. Current bill is: $%.2f. Please, scan the next item.\n(* to finish your purchase)\n", totalprice);
     }
 
     private float updatePrice(Map<String, Products> purchase, String item) throws NullPointerException{
@@ -77,7 +77,18 @@ public class Terminal2 {
     }
 
     private float updatePriceWithDiscount(int discount){
-        total = total - (total/100*discount);
-        return total;
+        totalprice = totalprice - (totalprice /100*discount);
+        return totalprice;
+    }
+
+    public void loadProducts(String item, float price, float qtyPrice, int qty){
+        purchase.put(item, new Products(item, price, qtyPrice, qty));
+    }
+    public void loadDiscount(String item, int discountRate){
+        discount.put(item, discountRate);
+    }
+
+    public float getTotalprice(){
+        return this.totalprice;
     }
 }

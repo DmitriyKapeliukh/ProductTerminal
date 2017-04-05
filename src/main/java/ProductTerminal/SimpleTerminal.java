@@ -6,12 +6,12 @@ import java.util.Scanner;
 /**
  * Created by Dmytro_Kapeliukh on 3/30/2017.
  */
-public class SimpleTerminal2 {
+public class SimpleTerminal {
     public static void main(String[] args) throws IOException {
         Scanner reader = new Scanner(System.in);
-        Terminal2 terminal2 = new Terminal2();
-        terminal2.loadPrices();
-        terminal2.setDiscount();
+        Terminal terminal = new Terminal();
+        terminal.loadPrices();
+        terminal.setDiscount();
         System.out.println("Scan your products");
 
         boolean endScan = false;
@@ -20,7 +20,7 @@ public class SimpleTerminal2 {
             if (purchaseItem.equals("*")) {
                 endScan = true;
             } else {
-                terminal2.scan(purchaseItem);
+                terminal.scan(purchaseItem);
             }
         }
 
@@ -32,12 +32,12 @@ public class SimpleTerminal2 {
             if (discount.equals("*")){
                 useDiscount = true;
             } else {
-                terminal2.scanDiscount(discount);
+                terminal.scanDiscount(discount);
             }
         }
         reader.close();
 
-        System.out.printf("Your purchase bill is: $%.2f.", terminal2.total);
+        System.out.printf("Your purchase bill is: $%.2f.", terminal.getTotalprice());
 
     }
 }

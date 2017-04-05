@@ -1,7 +1,7 @@
 package test.java.ProductTerminalTest;
 
 import main.java.ProductTerminal.Products;
-import main.java.ProductTerminal.Terminal2;
+import main.java.ProductTerminal.Terminal;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,89 +10,74 @@ import org.testng.annotations.Test;
  */
 public class TerminalTest {
     @Test
-    public void test() {
-        Terminal2 terminal2 = new Terminal2();
-        Products testProduct = new Products("A", 1, Float.parseFloat("2.75"), 3);
-        Products testProduct2 = new Products("B", Float.parseFloat("3.5"), Float.parseFloat("0"), 0);
-        Products testProduct3 = new Products("C", Float.parseFloat("1.5"), Float.parseFloat("5"), 4);
-        Products testProduct4 = new Products("C", Float.parseFloat("0.75"), Float.parseFloat("0"), 0);
+    public void testABCDproducts() {
+        Terminal terminal = new Terminal();
+        terminal.loadProducts("A", 1, Float.parseFloat("2.75"), 3);
+        terminal.loadProducts("B", Float.parseFloat("3.5"), Float.parseFloat("0"), 0);
+        terminal.loadProducts("C", Float.parseFloat("1.5"), Float.parseFloat("5"), 4);
+        terminal.loadProducts("D", Float.parseFloat("0.75"), Float.parseFloat("0"), 0);
 
-        terminal2.purchase.put("A", testProduct);
-        terminal2.purchase.put("B", testProduct2);
-        terminal2.purchase.put("C", testProduct3);
-        terminal2.purchase.put("D", testProduct4);
+        terminal.loadDiscount("F", 5);
+        terminal.loadDiscount("FF", 7);
+        terminal.loadDiscount("FFF", 10);
 
-        terminal2.discount.put("F", 5);
-        terminal2.discount.put("FF", 7);
-        terminal2.discount.put("FFF", 10);
+        terminal.scan("A");
+        terminal.scan("B");
+        terminal.scan("C");
+        terminal.scan("D");
 
-        terminal2.scan("A");
-        terminal2.scan("B");
-        terminal2.scan("C");
-        terminal2.scan("D");
+        terminal.scanDiscount("F");
 
-        terminal2.scanDiscount("F");
+        String totalPrice = String.format("%.2f", terminal.getTotalprice());
 
-        String list = String.format("%.2f", terminal2.total);
-
-        Assert.assertEquals(list, "6.41");
+        Assert.assertEquals(totalPrice, "6.41");
     }
 
     @Test
-    public void test1(){
-        Terminal2 terminal2 = new Terminal2();
-        Products testProduct = new Products("A", 1, Float.parseFloat("2.75"), 3);
-        Products testProduct2 = new Products("B", Float.parseFloat("3.5"), Float.parseFloat("0"), 0);
-        Products testProduct3 = new Products("C", Float.parseFloat("1.5"), Float.parseFloat("5"), 4);
-        Products testProduct4 = new Products("C", Float.parseFloat("0.75"), Float.parseFloat("0"), 0);
+    public void testAAADproducts(){
+        Terminal terminal = new Terminal();
+        terminal.loadProducts("A", 1, Float.parseFloat("2.75"), 3);
+        terminal.loadProducts("B", Float.parseFloat("3.5"), Float.parseFloat("0"), 0);
+        terminal.loadProducts("C", Float.parseFloat("1.5"), Float.parseFloat("5"), 4);
+        terminal.loadProducts("D", Float.parseFloat("0.75"), Float.parseFloat("0"), 0);
 
-        terminal2.purchase.put("A", testProduct);
-        terminal2.purchase.put("B", testProduct2);
-        terminal2.purchase.put("C", testProduct3);
-        terminal2.purchase.put("D", testProduct4);
+        terminal.loadDiscount("F", 5);
+        terminal.loadDiscount("FF", 7);
+        terminal.loadDiscount("FFF", 10);
 
-        terminal2.discount.put("F", 5);
-        terminal2.discount.put("FF", 7);
-        terminal2.discount.put("FFF", 10);
+        terminal.scan("A");
+        terminal.scan("A");
+        terminal.scan("A");
+        terminal.scan("D");
 
-        terminal2.scan("A");
-        terminal2.scan("A");
-        terminal2.scan("A");
-        terminal2.scan("D");
+        terminal.scanDiscount("FF");
 
-        terminal2.scanDiscount("FF");
+        String totalPrice = String.format("%.2f", terminal.getTotalprice());
 
-        String list = String.format("%.2f", terminal2.total);
-
-        Assert.assertEquals(list, "3.26");
+        Assert.assertEquals(totalPrice, "3.26");
     }
 
     @Test
-    public void test2(){
-        Terminal2 terminal2 = new Terminal2();
-        Products testProduct = new Products("A", 1, Float.parseFloat("2.75"), 3);
-        Products testProduct2 = new Products("B", Float.parseFloat("3.5"), Float.parseFloat("0"), 0);
-        Products testProduct3 = new Products("C", Float.parseFloat("1.5"), Float.parseFloat("5"), 4);
-        Products testProduct4 = new Products("C", Float.parseFloat("0.75"), Float.parseFloat("0"), 0);
+    public void testCCAAproducts(){
+        Terminal terminal = new Terminal();
+        terminal.loadProducts("A", 1, Float.parseFloat("2.75"), 3);
+        terminal.loadProducts("B", Float.parseFloat("3.5"), Float.parseFloat("0"), 0);
+        terminal.loadProducts("C", Float.parseFloat("1.5"), Float.parseFloat("5"), 4);
+        terminal.loadProducts("D", Float.parseFloat("0.75"), Float.parseFloat("0"), 0);
 
-        terminal2.purchase.put("A", testProduct);
-        terminal2.purchase.put("B", testProduct2);
-        terminal2.purchase.put("C", testProduct3);
-        terminal2.purchase.put("D", testProduct4);
+        terminal.loadDiscount("F", 5);
+        terminal.loadDiscount("FF", 7);
+        terminal.loadDiscount("FFF", 10);
 
-        terminal2.discount.put("F", 5);
-        terminal2.discount.put("FF", 7);
-        terminal2.discount.put("FFF", 10);
+        terminal.scan("C");
+        terminal.scan("C");
+        terminal.scan("A");
+        terminal.scan("A");
 
-        terminal2.scan("C");
-        terminal2.scan("C");
-        terminal2.scan("A");
-        terminal2.scan("A");
+        terminal.scanDiscount("FFF");
 
-        terminal2.scanDiscount("FFF");
+        String totalPrice = String.format("%.2f", terminal.getTotalprice());
 
-        String list = String.format("%.2f", terminal2.total);
-
-        Assert.assertEquals(list, "4.50");
+        Assert.assertEquals(totalPrice, "4.50");
     }
 }
