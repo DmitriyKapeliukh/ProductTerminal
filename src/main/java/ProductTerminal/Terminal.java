@@ -49,7 +49,7 @@ public class Terminal {
         }
     }
 
-    public void scan(String item) {
+    public void scan(final String item) {
         totalprice += this.updatePrice(purchase, item);
         System.out.printf("Item added. Current bill is: $%.2f. Please, scan the next item.\n(* to finish your purchase)\n", totalprice);
     }
@@ -70,21 +70,21 @@ public class Terminal {
             }
     }
 
-    public void scanDiscount(String item){
+    public void scanDiscount(final String item){
         int value = (int) discount.get(item);
         updatePriceWithDiscount(value);
         System.out.println("Another discount?\n* to finish your purchases");
     }
 
-    private float updatePriceWithDiscount(int discount){
+    private float updatePriceWithDiscount(final int discount){
         totalprice = totalprice - (totalprice /100*discount);
         return totalprice;
     }
 
-    public void loadProducts(String item, float price, float qtyPrice, int qty){
+    public void loadProducts(final String item, final float price, final float qtyPrice, final int qty){
         purchase.put(item, new Products(item, price, qtyPrice, qty));
     }
-    public void loadDiscount(String item, int discountRate){
+    public void loadDiscount(final String item, final int discountRate){
         discount.put(item, discountRate);
     }
 
